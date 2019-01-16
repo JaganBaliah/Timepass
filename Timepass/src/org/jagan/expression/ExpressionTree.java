@@ -160,6 +160,23 @@ public class ExpressionTree {
 		return node;
 	}
 	
+	
+	/*
+	 * Prefix / Preorder 	- NLR
+	 * Infix  / Inorder		- LNR
+	 * Postfix/ Postorder	- LRN
+	 * 
+	 * 
+	 * 							-
+	 * 
+	 * 					+				1
+	 * 							
+	 * 				-			-
+	 *
+	 * 			3		2	5		4
+	 * 
+	 */
+	
 	public static void main(String[] args) {
 		//System.out.println("Enter an infix expression");
 		//ExpressionTree calc = new ExpressionTree(new Scanner(System.in));
