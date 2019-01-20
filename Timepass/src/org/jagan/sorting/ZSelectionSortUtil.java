@@ -5,29 +5,24 @@ import java.util.Arrays;
 public class ZSelectionSortUtil {
 
 	public static void main(String[] args) {
-		Integer[] arr = {12, 11, 13, 5, 6, 7};
-		System.out.println(Arrays.asList(arr));
+		int[] arr = {12, 11, 13, 5, 6, 7};
+		System.out.println(Arrays.toString(arr));
 		sort(arr);
-		System.out.println(Arrays.asList(arr));
+		System.out.println(Arrays.toString(arr));
 	}
 
-	public static void sort(Integer[] arr){
+	public static void sort(int[] arr){
 		int len = arr.length;
-		int k = 0;
-		while(k < len) {
-			int minIndex = k;
-			for(int i = k+1; i < len; i++) {
-				if(arr[i] < arr[minIndex]) minIndex = i; 
+		int i = 0;
+		while(i < len) {
+			int lowestIndex = i;
+			for(int j = i + 1; j < len; j++) {
+				if(arr[j] < arr[lowestIndex]) lowestIndex = j; 
 			}
-			if(minIndex != k) swap(arr, minIndex, k);
-			k++;
+			if(lowestIndex != i) SortUtil.swap(arr, i, lowestIndex);
+			i++;
 		}
-	}
-
-	private static void swap(Integer[] arr, int i, int j) {
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
+		
 	}
 
 }

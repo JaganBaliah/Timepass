@@ -2,76 +2,39 @@ package org.jagan.sorting;
 
 import java.util.Arrays;
 
-public class ZHeapSortUtil { 
-	public void sort(Integer arr[]) 
-	{ 
-		int n = arr.length; 
-
-		// Build heap (rearrange array) 
-		for (int i = n / 2 - 1; i >= 0; i--) 
-			heapify(arr, n, i); 
-
-		// One by one extract an element from heap 
-		for (int i=n-1; i>=0; i--) 
-		{ 
-			// Move current root to end 
-			int temp = arr[0]; 
-			arr[0] = arr[i]; 
-			arr[i] = temp; 
-
-			// call max heapify on the reduced heap 
-			heapify(arr, i, 0); 
-		} 
-	} 
-
-	// To heapify a subtree rooted with node i which is 
-	// an index in arr[]. n is size of heap 
-	void heapify(Integer arr[], int n, int i) 
-	{ 
-		int largest = i; // Initialize largest as root 
-		int l = 2*i + 1; // left = 2*i + 1 
-		int r = 2*i + 2; // right = 2*i + 2 
-
-		// If left child is larger than root 
-		if (l < n && arr[l] > arr[largest]) 
-			largest = l; 
-
-		// If right child is larger than largest so far 
-		if (r < n && arr[r] > arr[largest]) 
-			largest = r; 
-
-		// If largest is not root 
-		if (largest != i) 
-		{ 
-			int swap = arr[i]; 
-			arr[i] = arr[largest]; 
-			arr[largest] = swap; 
-
-			// Recursively heapify the affected sub-tree 
-			heapify(arr, n, largest); 
-		} 
-	} 
-
-	/* A utility function to print array of size n */
-	static void printArray(int arr[]) 
-	{ 
-		int n = arr.length; 
-		for (int i=0; i<n; ++i) 
-			System.out.print(arr[i]+" "); 
-		System.out.println(); 
-	} 
-
-	// Driver program 
-	public static void main(String args[]) 
-	{ 
-		Integer arr[] = {12, 11, 13, 5, 6, 7}; 
-		//int n = arr.length; 
-
-		System.out.println("Input Array : " + Arrays.asList(arr));
-		ZHeapSortUtil ob = new ZHeapSortUtil(); 
-		ob.sort(arr); 
-
-		System.out.println("Sorted array : " + Arrays.asList(arr)); 
-		//printArray(arr); 
-	} 
+public class ZHeapSortUtil {
+	
+	public static void main(String[] args) {
+		int[] arr = {12, 11, 13, 5, 6, 7};
+		System.out.println(Arrays.toString(arr));
+		sort(arr);
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	public static void sort(int[] arr) {
+		int len = arr.length;
+		for(int i = (len + 1)/2; i >= 0; i--) {
+			heapify(arr, len, i);
+		}
+		
+		int j = len - 1;
+		while(j > 0) {
+			SortUtil.swap(arr, 0, j);			
+			heapify(arr, j, 0);
+			j--;
+		}
+	}
+	
+	public static void heapify(int[] arr, int n, int i) {
+		int j = 2*i + 1;
+		int k = 2*i + 2;
+		int highestIndex = i;
+		if(j < n && arr[j] > arr[highestIndex]) highestIndex = j;
+		if(k < n && arr[k] > arr[highestIndex]) highestIndex = k;
+		
+		if(highestIndex != i) {
+			SortUtil.swap(arr, highestIndex, i);
+			heapify(arr, n, highestIndex);
+		}
+	}
 } 
