@@ -1,0 +1,16 @@
+double dd = 602.79d;
+float f1 = 602.79f;
+double d1 = 602.79d;
+System.out.println(f1/2);
+System.out.println(d1/2);
+
+float f1 = 301.395f;
+double d1 = f1;
+double d2 = 301.395d;
+//System.out.println(d2);
+
+System.out.println(d2);
+double pow = Math.pow(10, 2);
+double round = Math.round(d2 * pow);
+System.out.println(round);
+System.out.println(round/pow);
