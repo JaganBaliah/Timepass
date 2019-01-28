@@ -1,5 +1,6 @@
 package org.jagan.graph;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Queue;
@@ -23,17 +24,22 @@ public class GraphUtil {
 		g.bfs(2);
 		System.out.println("BFS All Vertex");
 		g.bfsAll();
+		
+		g.printMotherVertex();
+		g.printTransitiveClosure();
 	}
 	
 	static class Graph {
 		int n;
 		LinkedList<Integer>[] adjList;
+		int[][] transitiveClosure;
 		
 		@SuppressWarnings("unchecked")
 		Graph(int n) {
 			this.n = n;
 			this.adjList = new LinkedList[n];
 			for(int i = 0 ; i < n; i++) this.adjList[i] = new LinkedList<Integer>();
+			this.transitiveClosure = new int[n][n];
 		}
 		
 		public void addEdge(int src, int dest) {
@@ -94,6 +100,41 @@ public class GraphUtil {
 				if(!visited[i]) bfsUtil(i, visited);				
 			}
 			System.out.println();
+		}
+		
+		public void printMotherVertex() {
+			boolean[] visited = new boolean[n];
+			int m = -1;
+			for(int i = 0 ; i < n; i++) {
+				if(!visited[i]) {
+					dfsUtil(i, visited);
+					m = i;
+				}
+			}
+			
+			visited = new boolean[n];
+			dfsUtil(m, visited);
+			for(boolean vis : visited) {
+				if(!vis) m = -1; break;
+			}
+			System.out.println("\nMother Vertex : " + m);
+			
+		}
+		
+		
+		public void printTransitiveClosure() {
+			for(int i = 0; i < n; i++) {
+				tClosure(i, i);				
+			}
+			System.out.println("Printing Transitive Closure : ");
+			for(int[] arr : transitiveClosure) System.out.println(Arrays.toString(arr));
+		}
+		
+		private void tClosure(int s, int d) {
+			transitiveClosure[s][d] = 1;
+			for(Integer v : this.adjList[d]) {
+				if(transitiveClosure[s][v] == 0) tClosure(s, v);
+			}
 		}
 	}
 }
