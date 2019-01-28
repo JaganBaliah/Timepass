@@ -3,6 +3,7 @@ package org.jagan.sorting;
 import java.util.Arrays;
 
 public class ZQuickSortUtil {
+	
 	public static void main(String[] args) {
 		int[] arr = {12, 11, 13, 5, 6, 7};
 		System.out.println(Arrays.toString(arr));
@@ -10,22 +11,21 @@ public class ZQuickSortUtil {
 		System.out.println(Arrays.toString(arr));
 	}
 	
-	public static void sort(int[] arr, int low, int high) {
+	private static void sort(int[] arr, int low, int high) {
 		if(low < high) {
-			int pi = partition(arr, low, high);
+			int pi = pivot(arr, low, high);
 			sort(arr, low, pi - 1);
 			sort(arr, pi + 1, high);
 		}
 	}
 	
-	public static int partition(int[] arr, int low, int high) {
+	private static int pivot(int[] arr, int low, int high) {
+		int key = arr[high];
 		int i = low;
 		for(int j = low; j < high; j++) {
-			if(arr[j] < arr[high]) {				
-				SortUtil.swap(arr, j, i++); 
-			}			
+			if(arr[j] <= key) SortUtil.swap(arr, i++, j);			
 		}
 		SortUtil.swap(arr, i, high);
-		return i;
+		return i;		
 	}
 }

@@ -6,43 +6,39 @@ import java.util.Collections;
 import java.util.List;
 
 public class ZBucketSortUtil {
-
+	
 	public static void main(String[] args) {
 		int[] arr = {12, 11, 13, 5, 6, 7};
 		System.out.println(Arrays.toString(arr));
 		sort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
-
-	public static void sort(int[] arr){
-		int code[] = hash(arr);
+	
+	private static void sort(int[] arr) {
+		int[] code = hash(arr);
 		@SuppressWarnings("unchecked")
-		List<Integer>[] buckets = new ArrayList[code[1]];
-		for(int i = 0; i < buckets.length; i++) buckets[i] = new ArrayList<Integer>();
-		for(int value : arr) {
-			int index = getBucketIndex(value, code);
-			buckets[index].add(value);
+		List<Integer>[] buckets = new List[code[1]];
+		for(int i = 0 ; i < buckets.length; i++) buckets[i] = new ArrayList<Integer>();
+		for(int val : arr) {
+			int bucketIdex = getBucketIndex(val, code);
+			buckets[bucketIdex].add(val);
 		}
-		for(List<Integer> bucket : buckets) {
-			Collections.sort(bucket);			
-		}
-		
+		for(List<Integer> bucket : buckets) Collections.sort(bucket);
 		int i = 0;
 		for(List<Integer> bucket : buckets) {
-			for(Integer entry : bucket) arr[i++] = entry;			
-		}		
+			for(int val : bucket) arr[i++] = val;
+		}	
 	}
 	
-	private static int getBucketIndex(int value, int[] code) {
-		return (value / code[0]) * (code[1] - 1);
+	private static int getBucketIndex(int val, int[] code) {
+		return (val/code[0]) * (code[1] - 1); 
 	}
 	
 	private static int[] hash(int[] arr) {
-		int max = arr[0];
 		int len = arr.length;
-		for(int i = 1; i < len; i++) {
-			if(arr[i] > max) max = arr[i];
-		}
+		int max = arr[0];
+		for(int i = 1; i < len; i++) if(arr[i] > max) max = arr[i];
 		return new int[] {max, (int)Math.sqrt(len)};
 	}
+	
 }

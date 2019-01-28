@@ -13,19 +13,14 @@ public class ZCountingSortUtil {
 
 	public static void sort(int[] arr){
 		int max = arr[0];
-		for(int val : arr) {
-			if(val > max) max = val;
-		}
+		for(int i = 0; i < arr.length; i++) if(arr[i] > max) max = arr[i];
 		int[] countArr = new int[max + 1];
-		for(int val : arr) 	countArr[val]++;
-		for(int i = 1; i < countArr.length; i++) countArr[i] += countArr[i - 1];
-		
-		int len = arr.length;
-		int[] outputArr = new int[len];
-		for(int i = len -1; i >= 0 ; i--) {
-			outputArr[countArr[arr[i]] - 1] = arr[i];
-			countArr[arr[i]]--;
+		for(int val : arr) countArr[val]++;
+		for(int i = 1; i < countArr.length; i++) countArr[i]+=countArr[i-1];
+		int[] output = new int[arr.length];
+		for(int i = arr.length - 1; i >= 0; i--) {
+			output[--countArr[arr[i]]] = arr[i];
 		}
-		for(int i = 0; i < len; i++) arr[i] = outputArr[i];
+		for(int i = 0; i < arr.length; i++) arr[i] = output[i];
 	}
 }
