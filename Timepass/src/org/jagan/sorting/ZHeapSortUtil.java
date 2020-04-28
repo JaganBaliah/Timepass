@@ -5,33 +5,35 @@ import java.util.Arrays;
 public class ZHeapSortUtil {
 	
 	public static void main(String[] args) {
-		int[] arr = {12, 11, 13, 5, 6, 7};
+		int[] arr = {12, 11, 12, 13, 7, 5, 6, 7};
 		System.out.println(Arrays.toString(arr));
 		sort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
-	
-	private static void sort(int[] arr) {
+
+	public static void sort(int[] arr) {
 		int len = arr.length;
-		for(int i = len/2 + 1; i >= 0; i--) heapify(arr, len, i);
-		
+		for(int i = len / 2; i >= 0; i--) {
+			heapify(arr, len, i);
+		}
 		int j = len - 1;
-		while(j > 0) {
-			SortUtil.swap(arr, j, 0);
+		while(j >= 0) {
+			SortUtil.swap(arr, 0, j);
 			heapify(arr, j, 0);
 			j--;
 		}
 	}
 	
-	private static void heapify(int[] arr, int n, int i) {
-		int l = 2 * i + 1;
-		int m = 2 * i + 2;
-		int highestIndex = i;
-		if(l < n && arr[l] > arr[highestIndex]) highestIndex = l;
-		if(m < n && arr[m] > arr[highestIndex]) highestIndex = m;
-		if(i != highestIndex) {
-			SortUtil.swap(arr, i, highestIndex);
-			heapify(arr, n , highestIndex);
+	public static void heapify(int[] arr, int len, int i) {
+		int j = 2 * i + 1;
+		int k = 2 * i + 2;
+		int maxIndex = i;
+		if(j < len && arr[j] > arr[maxIndex]) maxIndex = j;
+		if(k < len && arr[k] > arr[maxIndex]) maxIndex = k;
+		if(i != maxIndex) {
+			SortUtil.swap(arr, maxIndex, i);
+			heapify(arr, len, maxIndex);
 		}
 	}
+	
 } 
