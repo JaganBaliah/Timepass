@@ -32,8 +32,9 @@ public class PalindromeExercise {
 		EfficientLongestPalindromeFinder elpFinder = new EfficientLongestPalindromeFinder();
 		String input3 = "abededeba";
 		System.out.println("Longest palindrome for \"" + input3 + "\" : " + elpFinder.findLongestPalindrome(input3));
+	
 	}
-
+	
 	private static class PalindromeChecker {
 		public boolean isPalindrome(String input) {
 			boolean rtnVal = true;
@@ -54,10 +55,8 @@ public class PalindromeExercise {
 			int len = input.length();
 			for(int i = 0; i < len; i++) {
 				for(int j = i + 1; j <= len; j++) {
-					if(i < j) {
-						String str = input.substring(i, j);
-						if(check(str)) rtnVal.add(str);						
-					}
+					String str = input.substring(i, j);
+					if(check(str)) rtnVal.add(str);					
 				}
 			}
 			return rtnVal;

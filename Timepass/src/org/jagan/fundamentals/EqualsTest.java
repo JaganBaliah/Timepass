@@ -23,9 +23,14 @@ public class EqualsTest extends TestCase {
 
 	public void test1() {
 		assert new String("a") != new String("a");
+		String str1 = new String("a");
+		String str2 = new String("a");
+		assert str1 != str2;
 		Integer i = 128;
 		Integer j = 128;
 		assert i != j;
+		assert i.equals(j);
+		System.out.println(i.equals(j));
 	}
 	
 	public void test2() {

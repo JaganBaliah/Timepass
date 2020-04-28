@@ -1,15 +1,16 @@
 package org.jagan.concurrency;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Test implements Runnable {
 
 	//Using normal list will end up overwriting some elements
-	static List<Integer> ls = new ArrayList<Integer>();
+	//static List<Integer> ls = new ArrayList<Integer>();
 
 	//Using synchronized list will make sure only one thread access the list at any given time
-	//static List<Integer> ls = Collections.synchronizedList(new ArrayList<Integer>());
+	static List<Integer> ls = Collections.synchronizedList(new ArrayList<Integer>());
 
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread(new Test());
