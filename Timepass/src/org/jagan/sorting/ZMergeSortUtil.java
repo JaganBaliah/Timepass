@@ -11,7 +11,7 @@ public class ZMergeSortUtil {
 		System.out.println(Arrays.toString(arr));
 	}
 	
-	public static void sort(int[] arr, int l, int r) {
+	public static void sort(int arr[], int l, int r) {
 		if(l < r) {
 			int m = (l + r) / 2;
 			sort(arr, l, m);
@@ -19,7 +19,7 @@ public class ZMergeSortUtil {
 			mergeSort(arr, l, m, r);
 		}
 	}
-	
+
 	public static void mergeSort(int[] arr, int l, int m, int r) {
 		int n1 = m - l + 1;
 		int n2 = r - m;
@@ -38,4 +38,5 @@ public class ZMergeSortUtil {
 		while(i < n1) arr[k++] = N1[i++];
 		while(j < n2) arr[k++] = N2[j++];
 	}
+	
 }

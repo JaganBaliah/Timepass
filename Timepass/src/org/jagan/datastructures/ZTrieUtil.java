@@ -21,40 +21,37 @@ public class ZTrieUtil {
 	
 	public static void insert(Trie root, String[] keys) {
 		for(String key : keys) {
-			//key.chars().forEach();
 			Trie current = root;
-			for(int i = 0 ; i < key.length(); i++) {
-				char ch = key.charAt(i);
+			for(char ch : key.toCharArray()) {
 				int index = ch - 'a';
 				if(current.childrens[index] == null) {
-					current.childrens[index] = new Trie();					
+					current.childrens[index] = new Trie();
 				}
 				current = current.childrens[index];
 			}
-			current.isEOW = true;
+			current.isEow = true;
 		}
 	}
-	
-	public static boolean search(Trie root, String str) {
+
+	private static boolean search(Trie root, String string) {
 		Trie current = root;
-		for(int i = 0; i < str.length(); i++) {
-			char ch = str.charAt(i);
+		for(char ch : string.toCharArray()) {
 			int index = ch - 'a';
-			Trie trie = current.childrens[index];
-			if(trie == null) return false;
-			current = trie; 
+			if(current.childrens[index] == null) return false;
+			current = current.childrens[index];
 		}
-		if(!current.isEOW) return false;		
-		return true;
+		if(current.isEow) return true;
+		return false;
 	}
 	
 	static class Trie {
-		static int CHARACTER_SIZE = 26;
-		Trie[] childrens = new Trie[CHARACTER_SIZE];
-		boolean isEOW;
+		int childCount = 26;
+		Trie[] childrens;
+		boolean isEow;
 		
-		public Trie() {	
-					}
+		Trie() {
+			childrens = new Trie[childCount];
+		}
 	}
 	
 }

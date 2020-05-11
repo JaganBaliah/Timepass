@@ -1,4 +1,4 @@
-package org.jagan.solutions;
+package org.jagan.solutions.az;
 
 import java.util.ArrayList;
 import java.util.List;

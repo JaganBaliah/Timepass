@@ -33,60 +33,62 @@ public class ZTreeNodeUtil {
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
 		queue.add(root);
 		while(!queue.isEmpty()) {
-			TreeNode node = queue.remove();
+			TreeNode node = queue.poll();
 			bldr.append(node.data);
 			if(node.left != null) queue.add(node.left);
 			if(node.right != null) queue.add(node.right);			
-		}		
+		}
 	}
-	
+
 	private static void traversePreOrder(TreeNode node, StringBuilder bldr) {
-		if(node.isLeaf) bldr.append(node.data);
-		else {
+		if(node.isLeaf) {
+			bldr.append(node.data);
+		} else {
 			bldr.append(node.data);
 			traversePreOrder(node.left, bldr);
 			traversePreOrder(node.right, bldr);
 		}		
 	}
-	
+
 	private static void traverseInOrder(TreeNode node, StringBuilder bldr) {
-		if(node.isLeaf) bldr.append(node.data);
-		else {
+		if(node.isLeaf) {
+			bldr.append(node.data);
+		} else {
 			traverseInOrder(node.left, bldr);
 			bldr.append(node.data);
 			traverseInOrder(node.right, bldr);
-		}		
+		}
 	}
-	
+
 	private static void traversePostOrder(TreeNode node, StringBuilder bldr) {
-		if(node.isLeaf) bldr.append(node.data);
-		else {
+		if(node.isLeaf) {
+			bldr.append(node.data);
+		} else {
 			traversePostOrder(node.left, bldr);
 			traversePostOrder(node.right, bldr);
 			bldr.append(node.data);
-			
-		}		
+		}
 	}
-	
+
 	public static TreeNode populate(Scanner scanner) {
-		if(scanner.hasNextInt()) {
-			return new TreeNode(scanner.nextInt()+"", true);
+		 if(scanner.hasNextInt()) {
+			return new TreeNode(scanner.next(), true);
 		} else {
-			String data = scanner.next();
-			TreeNode node = new TreeNode(data, false);
+			String next = scanner.next();
+			TreeNode node = new TreeNode(next, false);
 			node.left = populate(scanner);
 			node.right = populate(scanner);
 			return node;
 		}
 	}
 	
-	static class TreeNode {		
+	static class TreeNode {
 		String data;
 		TreeNode left;
 		TreeNode right;
 		boolean isLeaf;
 		
-		public TreeNode(String data, boolean isLeaf) {
+		TreeNode(String data, boolean isLeaf) {
 			this.data = data;
 			this.isLeaf = isLeaf;
 		}

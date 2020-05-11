@@ -8,7 +8,7 @@ import java.util.List;
 public class ZBucketSortUtil {
 	
 	public static void main(String[] args) {
-		int[] arr = {12, 11, 12, 13, 7, 5, 6, 7};
+		int[] arr = {12, 11, 12, 13, 7, 5, 6, 7, 4, 1, 3, 8};
 		System.out.println(Arrays.toString(arr));
 		sort(arr);
 		System.out.println(Arrays.toString(arr));
@@ -22,25 +22,26 @@ public class ZBucketSortUtil {
 			buckets[i] = new ArrayList<Integer>();
 		}
 		for(int val : arr) {
-			int bucketIndex = getBucketIndex(val, hash);
-			buckets[bucketIndex].add(val);
+			int i = getIndex(val, hash);
+			buckets[i].add(val);
 		}
-		for(List<Integer> bucket : buckets) Collections.sort(bucket);
+		for(int i = 0; i < buckets.length; i++) {
+			Collections.sort(buckets[i]);
+			System.out.println(buckets[i].size());
+		}
 		int i = 0;
 		for(List<Integer> bucket : buckets) {
-			for(Integer entry : bucket) {
-				arr[i++] = entry;
-			}
+			for(int val : bucket) arr[i++] = val;
 		}
-	}
-	
-	public static int getBucketIndex(int val, int[] hash) {
-		return (val/hash[0]) * (hash[1] - 1);
 	}
 	
 	public static int[] getHash(int[] arr) {
-		int max = arr[0];
-		for(int val : arr) if(val > max) max = val;
-		return new int[] {max, (int)Math.sqrt(arr.length)};
+		return new int[] {SortUtil.getMax(arr), (int)Math.sqrt(arr.length)};
+	}
+	
+	public static int getIndex(int val, int[] hash) {
+		double factor = (double)val/hash[0];
+		double index = factor * (hash[1] - 1);
+		return (int)index;
 	}
 }

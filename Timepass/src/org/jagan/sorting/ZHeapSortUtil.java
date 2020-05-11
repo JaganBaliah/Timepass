@@ -10,30 +10,27 @@ public class ZHeapSortUtil {
 		sort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
-
+	
 	public static void sort(int[] arr) {
 		int len = arr.length;
-		for(int i = len / 2; i >= 0; i--) {
-			heapify(arr, len, i);
-		}
+		for(int i = len/2 - 1; i >= 0; i--) heapify(arr, len, i);
 		int j = len - 1;
-		while(j >= 0) {
+		while(j > 0) {
 			SortUtil.swap(arr, 0, j);
 			heapify(arr, j, 0);
 			j--;
 		}
 	}
-	
-	public static void heapify(int[] arr, int len, int i) {
+
+	private static void heapify(int[] arr, int len, int i) {
 		int j = 2 * i + 1;
 		int k = 2 * i + 2;
-		int maxIndex = i;
-		if(j < len && arr[j] > arr[maxIndex]) maxIndex = j;
-		if(k < len && arr[k] > arr[maxIndex]) maxIndex = k;
-		if(i != maxIndex) {
-			SortUtil.swap(arr, maxIndex, i);
-			heapify(arr, len, maxIndex);
+		int max = i;
+		if(j < len && arr[j] > arr[max]) max = j;
+		if(k < len && arr[k] > arr[max]) max = k;
+		if(i != max) {
+			SortUtil.swap(arr, i, max);
+			heapify(arr, len, max);
 		}
 	}
-	
 } 

@@ -1,4 +1,4 @@
-package org.jagan.solutions;
+package org.jagan.solutions.az;
 
 public class NumberOfIslands {
 

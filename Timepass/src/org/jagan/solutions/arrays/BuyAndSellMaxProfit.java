@@ -1,4 +1,4 @@
-package org.jagan.solutions;
+package org.jagan.solutions.arrays;
 
 import java.util.Arrays;
 

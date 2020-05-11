@@ -12,19 +12,26 @@ public class ZRadixSortUtil {
 	}
 	
 	public static void sort(int[] arr) {
-		int max = arr[0];
-		for(int val : arr) if(val > max) max = val;
-		for(int exp = 1; max/exp > 0; exp *= 10) {
-			countSort(arr, exp);
-		}
+		int max = SortUtil.getMax(arr);
+		for(int exp = 1; max/exp > 0; exp *= 10) countSort(arr, exp);
 	}
 	
 	public static void countSort(int[] arr, int exp) {
-		int[] countArr = new int[10];
-		for(int i = 0; i < arr.length; i++) ++countArr[(arr[i]/exp) % 10];
-		for(int i = 0; i < countArr.length - 1; i++) countArr[i+1] += countArr[i];
-		int[] outputArr = new int[arr.length];
-		for(int i = arr.length - 1; i >= 0; i--) outputArr[--countArr[(arr[i]/exp) % 10]] = arr[i];
-		for(int i = 0; i < arr.length; i++) arr[i] = outputArr[i];
+		int[] cArr = new int[10];
+		int len = arr.length;
+		for(int i = 0; i < len; i++) {
+			int val = arr[i];
+			int index = val/exp % 10;
+			++cArr[index];
+		}
+		for(int i = 1; i < cArr.length; i++) cArr[i] += cArr[i - 1];
+		int[] tArr = new int[len];
+		for(int i = len - 1; i >= 0; i--) {
+			int val = arr[i];
+			int index = val/exp % 10;
+			tArr[--cArr[index]] = val;
+		}
+		for(int i = 0; i < len; i++) arr[i] = tArr[i];
 	}
+	
 }

@@ -7,5 +7,11 @@ public class SortUtil {
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
+	
+	public static int getMax(int[] arr) {
+		int max = arr[0];
+		for(int val : arr) if(val > max) max = val;
+		return max;		
+	}
 
 }

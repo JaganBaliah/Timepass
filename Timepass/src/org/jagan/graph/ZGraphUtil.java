@@ -1,5 +1,6 @@
 package org.jagan.graph;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ZGraphUtil {
 		g = new Graph(7);
 		g.addEdge(0, 1); 
     	g.addEdge(0, 2); 
-    	//g.addEdge(1, 3); 
+    	g.addEdge(1, 3); 
     	g.addEdge(4, 1); 
     	g.addEdge(6, 4); 
     	g.addEdge(5, 6); 
@@ -67,13 +68,9 @@ public class ZGraphUtil {
 		@SuppressWarnings("unchecked")
 		Graph(int n) {
 			this.n = n;
-			this.adjList = new LinkedList[n];
-			for(int i = 0;i < n; i++) this.adjList[i] = new LinkedList<Integer>();
-			transclosure = new int[n][n];
-			for(int i = 0 ; i < n; i++) {
-				transclosure[i] = new int[n];
-				for(int j = 0 ; j < n; j++) transclosure[i][j] = 0;
-			}
+			this.adjList = new List[n];
+			for(int i = 0; i < n; i++) adjList[i] = new ArrayList<Integer>();
+			this.transclosure = new int[n][n];
 		}
 	
 		void addEdge(int src, int desc) {
@@ -82,11 +79,12 @@ public class ZGraphUtil {
 		
 		void dfs(int v, boolean[] visited) {
 			visited[v] = true;
-			//System.out.print(" -> " + v);
-			for(int s : this.adjList[v]) {
-				if(!visited[s]) dfs(s, visited);
+			System.out.print(v + " -> ");
+			ListIterator<Integer> listIterator = this.adjList[v].listIterator();
+			while(listIterator.hasNext()) {
+				Integer next = listIterator.next();
+				if(!visited[next]) dfs(next, visited);
 			}
-			System.out.print(" -> " + v);
 		}
 		
 		void dfsFor(int v) {
@@ -97,25 +95,21 @@ public class ZGraphUtil {
 		
 		void dfsForAll() {
 			boolean[] visited = new boolean[n];
-			for(int i = 0 ; i < n; i++) {
-				if(!visited[i]) dfs(i, visited);
-			}
+			for(int i = 0; i < n; i++) if(!visited[i]) dfs(i, visited);
 			System.out.println();
 		}
 		
 		void bfs(int v, boolean[] visited) {
-			visited[v] = true;
 			Queue<Integer> queue = new LinkedList<Integer>();
 			queue.add(v);
+			visited[v] = true;
 			while(!queue.isEmpty()) {
-				Integer s = queue.poll();
-				System.out.print(" -> " + s);
-				ListIterator<Integer> listIterator = adjList[s].listIterator();
-				while(listIterator.hasNext()) {
-					Integer next = listIterator.next();
-					if(!visited[next]) {
-						visited[next] = true;
-						queue.add(next);
+				Integer val = queue.poll();
+				System.out.print(val + " -> ");
+				for(Integer x : this.adjList[val]) {
+					if(!visited[x]) {
+						queue.add(x);
+						visited[x] = true;
 					}
 				}
 			}
@@ -129,9 +123,7 @@ public class ZGraphUtil {
 		
 		void bfsForAll() {
 			boolean[] visited = new boolean[n];
-			for(int i = 0; i < n; i++) {
-				if(!visited[i]) bfs(i, visited);
-			}
+			for(int i = 0; i < n; i++) if(!visited[i]) bfs(i, visited);
 			System.out.println();
 		}
 		
