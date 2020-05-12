@@ -1,7 +1,6 @@
 package org.jagan.solutions.az;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class TwoSumUniquePairs {
 
