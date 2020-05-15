@@ -12,13 +12,7 @@ public class ZSelectionSortUtil {
 	}
 
 	private static void sort(int[] arr) {
-		for(int i = 0; i < arr.length - 1; i++) {
-			int min = i;
-			for(int j = i; j < arr.length; j++) {
-				if(arr[j] < arr[min]) min = j;
-			}
-			SortUtil.swap(arr, i, min);
-		}
+		
 	}
 	
 }

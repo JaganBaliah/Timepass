@@ -12,22 +12,7 @@ public class ZQuickSortUtil {
 	}
 	
 	public static void sort(int[] arr, int low, int high) {
-		if(low < high) {
-			int pi = partition(arr, low, high);
-			sort(arr, low, pi - 1);
-			sort(arr, pi + 1, high);
-		}
+		
 	}
 
-	public static int partition(int[] arr, int low, int high) {
-		int i = low;
-		for(int j = low; j < high; j++) {
-			if(arr[j] < arr[high]) {
-				SortUtil.swap(arr, i, j);
-				i++;
-			}
-		}
-		SortUtil.swap(arr, high, i);
-		return i;
-	}
 }
