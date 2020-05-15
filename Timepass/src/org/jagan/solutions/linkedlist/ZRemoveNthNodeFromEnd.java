@@ -25,21 +25,6 @@ public class ZRemoveNthNodeFromEnd {
 	}
 
 	public static void deleteNodeFromEndAt(LinkedNodeList list, int n) {
-		LinkedNode aNode = list.head;
-		while(n > 0) {
-			if(aNode == null) return;
-			aNode = aNode.next;
-			n--;
-		}
-		if(aNode == null) {
-			list.head = list.head.next;
-			return;
-		}
-		LinkedNode cNode = list.head;
-		while(aNode.next != null) {
-			cNode = cNode.next;
-			aNode = aNode.next;
-		}
-		cNode.next = cNode.next.next;
+		
 	}
 }

@@ -26,22 +26,10 @@ public class ZReverseList {
 	}
 
 	public static void reverseList(LinkedNodeList list) {
-		LinkedNode pNode = null;
-		LinkedNode cNode = list.head;
-		while(cNode != null) {
-			LinkedNode nNode = cNode.next;
-			cNode.next = pNode;
-			pNode = cNode;
-			cNode = nNode;
-		}
-		list.head = pNode;
+		
 	}
 	
 	public static LinkedNode recursiveReverseList(LinkedNode head) {
-		if(head == null || head.next == null) return head;
-		LinkedNode p = recursiveReverseList(head.next);
-		head.next.next = head;
-		head.next = null;
-		return p;
+		return null;
 	}
 }

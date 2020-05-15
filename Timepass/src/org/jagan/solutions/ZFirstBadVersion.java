@@ -32,22 +32,10 @@ public class ZFirstBadVersion {
 	}
 	
 	public static int firstBadVersion(int n) {
-		int left = 1;
-		int right = n - 1;
-		while(left < right) {
-			int mid = left + (right - left)/2;
-			boolean bad = isBadVersion(mid);
-			if(bad) {
-				right = mid;
-			} else {
-				left = mid + 1;
-			}
-		}
-		return left;
+		return 0;
 	}
 	
 	public static boolean isBadVersion(int n) {
-		if(n > 3) return true;
 		return false;
 	}
 

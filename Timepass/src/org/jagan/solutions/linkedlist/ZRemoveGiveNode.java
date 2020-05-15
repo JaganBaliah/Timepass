@@ -31,9 +31,7 @@ public class ZRemoveGiveNode {
 	}
 	
 	public static void deleteNode(LinkedNode linkedNode) {
-		LinkedNode nextNode = linkedNode.next;
-		linkedNode.val = nextNode.val;
-		linkedNode.next = nextNode.next;
+		
 	}
 
 }

@@ -2,8 +2,6 @@ package org.jagan.solutions.arrays;
 
 import java.util.Arrays;
 
-import org.jagan.sorting.SortUtil;
-
 public class ZMoveZeroes {
 
 	public static void main(String[] args) {
@@ -19,21 +17,11 @@ public class ZMoveZeroes {
 	}
 
 	public static void moveZeroesFirstAndRetainOrder(int[] arr) {
-		int len = arr.length, i = len - 1, j = len - 1;
-		while(j >= 0) {
-			if(arr[j] != 0) SortUtil.swap(arr, i--, j); 
-			j--;
-		}
+		
 	}
 
 	public static void moveZeroes(int[] arr) {
-		int i = 0;
-		for(int j = 0; j < arr.length; j++) {
-			if(arr[j] != 0) {
-				SortUtil.swap(arr, i, j);
-				i++;
-			}
-		}
+		
 	}
 	
 }

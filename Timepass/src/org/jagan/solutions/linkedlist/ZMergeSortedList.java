@@ -38,38 +38,11 @@ public class ZMergeSortedList {
 	}
 
 	public static LinkedNode mergeSortedList(LinkedNode l1, LinkedNode l2) {
-		if(l1 == null) return l2;
-		if(l2 == null) return l1;
-		LinkedNode dummy = new LinkedNode("0");
-		LinkedNode curr = dummy;
-		while(l1 != null && l2 != null) {
-			if(Integer.parseInt(l1.val) <= Integer.parseInt(l2.val)) {
-				curr.next = l1;
-				l1 = l1.next;
-			} else {
-				curr.next = l2;
-				l2 = l2.next;
-			}
-			curr = curr.next;
-		}
-		if(l1 == null) {
-			curr.next = l2;
-		} else {
-			curr.next = l1;
-		}
-		return dummy.next;
+		return null;
 	}
 
 	public static LinkedNode recursiveMergeSortedList(LinkedNode l1, LinkedNode l2) {
-		if(l1 == null) return l2;
-		if(l2 == null) return l1;
-		if(Integer.parseInt(l1.val) <= Integer.parseInt(l2.val)) {
-			l1.next = recursiveMergeSortedList(l1.next, l2);
-			return l1;
-		} else {
-			l2.next = recursiveMergeSortedList(l1, l2.next);
-			return l2;
-		}
+		return null;
 	}
 	
 }

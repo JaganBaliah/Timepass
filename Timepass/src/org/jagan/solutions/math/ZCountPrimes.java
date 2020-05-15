@@ -17,21 +17,7 @@ public class ZCountPrimes {
 	}
 	
 	public static int countPrimes(int n) {
-		boolean[] notPrime = new boolean[n];
-		int count = 0;
-		int i = 2;
-		for(; i <= Math.sqrt(n); i++) {
-			if(!notPrime[i]) {
-				count++;
-				for(int j = 2; j * i < n; j++) {
-					notPrime[i * j] = true;
-				}
-			}
-		}
-		for(; i < n; i++) {
-			if(!notPrime[i]) count++;
-		}
-		return count;
+		return 0;
 	}
 
 }

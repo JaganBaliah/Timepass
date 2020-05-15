@@ -1,6 +1,5 @@
 package org.jagan.graph;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class ZGraphKCoreUtil {
@@ -50,60 +49,19 @@ public class ZGraphKCoreUtil {
 		List<Integer>[] adjList;
 		int[][] transclosure;
 
-		@SuppressWarnings("unchecked")
 		Graph(int n) {
-			this.n = n;
-			this.adjList = new LinkedList[n];
-			for(int i = 0;i < n; i++) this.adjList[i] = new LinkedList<Integer>();
-			transclosure = new int[n][n];
-			for(int i = 0 ; i < n; i++) {
-				transclosure[i] = new int[n];
-				for(int j = 0 ; j < n; j++) transclosure[i][j] = 0;
-			}
+			
 		}
 
 		void addEdge(int src, int desc) {
-			this.adjList[src].add(desc);
-			this.adjList[desc].add(src);
+			
 		}
 
 		boolean dfsKCoreUtil(int v, boolean[] visited, int[] degree, int k) {
-			visited[v] = true;
-			for(Integer i : this.adjList[v]) {
-				if(degree[v] < k) degree[i]--;
-				if(!visited[i]) {
-					if(dfsKCoreUtil(i, visited, degree, k)) degree[v]--;
-				}
-			}
-			return degree[v] < k;
+			return false;
 		}
 		
 		void printKCores(int k) {
-			boolean visited[] = new boolean[n];
-			int[] degree = new int[n];
-			int maxDegree = Integer.MIN_VALUE;
-			int startVertex = -1;
-			for(int i = 0 ; i < n; i++) {
-				degree[i] = adjList[i].size();
-				if(degree[i] > maxDegree) {
-					maxDegree = degree[i];
-					startVertex = i;
-				}
-			}
-			dfsKCoreUtil(startVertex, visited, degree, k);
-			for(int i = 0 ; i < n; i++) {
-				if(!visited[i]) dfsKCoreUtil(i, visited, degree, k);
-			}
-			System.out.println("Printing K Cores : ");
-			for(int i = 0 ; i < n; i++) {
-				if(degree[i] >= k) {
-					System.out.print("[" + i + "] : ");
-					for(int j : this.adjList[i]) {
-						if(degree[j] >= k) System.out.print(" -> " + j);
-					}
-					System.out.println();
-				}
-			}
 			
 		}
 	}

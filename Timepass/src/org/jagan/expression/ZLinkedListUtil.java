@@ -18,15 +18,7 @@ public class ZLinkedListUtil {
 	}
 	
 	public static LinkedList.Node findMiddle(LinkedList list) {
-		LinkedList.Node current = list.head;
-		LinkedList.Node middle = list.head;
-		int i = 1;
-		while(current.next != null) {
-			current = current.next;
-			if(i % 2 == 0) middle = middle.next;
-			i++;
-		}
-		return middle;
+		return null;
 	}
 	
 	static class LinkedList {

@@ -45,33 +45,7 @@ public class ZDeepCopyListWithRandomPointer {
 	}
 	
 	public static Node copyRandomList(Node head) {
-		Node cNode = head;
-		while(cNode != null) {
-			Node nNode = cNode.next;
-			cNode.next = new Node(cNode.val);
-			cNode.next.next = nNode;
-			cNode = nNode;
-		}
-		cNode = head;
-		while(cNode != null) {
-			Node aNode = cNode.next;
-			if(cNode.random != null) aNode.random = cNode.random.next;
-			cNode = cNode.next.next;
-		}
-		cNode = head;
-		Node rNode = new Node(0);
-		Node acNode = rNode;
-		while(cNode != null) {
-			Node nNode = cNode.next.next;
-			Node aNode = cNode.next;
-			
-			acNode.next = aNode;
-			acNode = acNode.next;
-			
-			cNode.next = nNode;
-			cNode = cNode.next;
-		}
-		return rNode.next;
+		return null;
 	}
 	
 	static class Node {

@@ -25,26 +25,16 @@ public class ZMissingNumber {
 		
 	}
 	
-	private static void print(int[] sequence) {
+	public static void print(int[] sequence) {
 		System.out.print("Missing number in sequence : [" + Arrays.toString(sequence) + "] is ");
 	}
 	
 	private static int findMissingNumberInSequence(int[] sequence) {
-		print(sequence);
-		int xor = sequence.length;
-		for(int i = 0; i < sequence.length; i++) xor = xor ^ i ^ sequence[i];
-		return xor >= 0 ? xor : -1;
+		return 0;
 	}
 	
 	private static int findMissingNumberInSequenceUsingSum(int[] sequence) {
-		print(sequence);
-		int sum = 0;
-		for(int val : sequence) {
-			sum += val;
-		}
-		int len = sequence.length;
-		int actualSum = len * (len + 1) / 2;
-		return actualSum - sum;
+		return 0;
 	}
 	
 	

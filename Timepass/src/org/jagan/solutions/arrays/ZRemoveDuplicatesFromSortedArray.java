@@ -2,8 +2,6 @@ package org.jagan.solutions.arrays;
 
 import java.util.Arrays;
 
-import org.jagan.sorting.SortUtil;
-
 public class ZRemoveDuplicatesFromSortedArray {
 
 	public static void main(String[] args) {
@@ -15,13 +13,6 @@ public class ZRemoveDuplicatesFromSortedArray {
 	}
 	
 	private static int removeDuplicates(int[] arr) {
-		int i = 0;
-		for(int j = 1; j < arr.length; j++) {
-			if(arr[j] != arr[i]) {
-				i++;
-				if(i != j) SortUtil.swap(arr, i, j);
-			}
-		}
-		return i + 1;
+		return 0;
 	}
 }

@@ -1,11 +1,6 @@
 package org.jagan.graph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Queue;
 
 public class ZGraphUtil {
 
@@ -65,97 +60,27 @@ public class ZGraphUtil {
 		List<Integer>[] adjList;
 		int[][] transclosure;
 		
-		@SuppressWarnings("unchecked")
-		Graph(int n) {
-			this.n = n;
-			this.adjList = new List[n];
-			for(int i = 0; i < n; i++) adjList[i] = new ArrayList<Integer>();
-			this.transclosure = new int[n][n];
-		}
+		Graph(int n) {}
 	
-		void addEdge(int src, int desc) {
-			this.adjList[src].add(desc);
-		}
+		void addEdge(int src, int desc) {}
 		
-		void dfs(int v, boolean[] visited) {
-			visited[v] = true;
-			System.out.print(v + " -> ");
-			ListIterator<Integer> listIterator = this.adjList[v].listIterator();
-			while(listIterator.hasNext()) {
-				Integer next = listIterator.next();
-				if(!visited[next]) dfs(next, visited);
-			}
-		}
+		void dfs(int v, boolean[] visited) {}
 		
-		void dfsFor(int v) {
-			boolean[] visited = new boolean[n];
-			dfs(v, visited);
-			System.out.println();
-		}
+		void dfsFor(int v) {}
 		
-		void dfsForAll() {
-			boolean[] visited = new boolean[n];
-			for(int i = 0; i < n; i++) if(!visited[i]) dfs(i, visited);
-			System.out.println();
-		}
+		void dfsForAll() {}
 		
-		void bfs(int v, boolean[] visited) {
-			Queue<Integer> queue = new LinkedList<Integer>();
-			queue.add(v);
-			visited[v] = true;
-			while(!queue.isEmpty()) {
-				Integer val = queue.poll();
-				System.out.print(val + " -> ");
-				for(Integer x : this.adjList[val]) {
-					if(!visited[x]) {
-						queue.add(x);
-						visited[x] = true;
-					}
-				}
-			}
-		}
+		void bfs(int v, boolean[] visited) {}
 		
-		void bfsFor(int v) {
-			boolean[] visited = new boolean[n];
-			bfs(v, visited);
-			System.out.println();
-		}
+		void bfsFor(int v) {}
 		
-		void bfsForAll() {
-			boolean[] visited = new boolean[n];
-			for(int i = 0; i < n; i++) if(!visited[i]) bfs(i, visited);
-			System.out.println();
-		}
+		void bfsForAll() {}
 		
-		int printMotherVertex() {
-			int rtnVal = -1;
-			boolean[] visited = new boolean[n];
-			for(int i = 0 ; i < n; i++) {
-			//for(int i = n-1 ; i >= 0; i--) {
-				if(!visited[i]) {
-					dfs(i, visited);
-					rtnVal = i;
-				}
-			}
-			visited = new boolean[n];
-			dfs(rtnVal, visited);
-			for(boolean i : visited) if(!i) return -1;
-			return rtnVal;
-		}
+		int printMotherVertex() {return 0;}
 		
-		void printTransitiveClosure() {
-			for(int i = 0 ; i < n; i++) closureUtil(i, i);
-			for(int i = 0 ; i < n; i++) {
-				System.out.println(Arrays.toString(transclosure[i]));
-			}
-		}
+		void printTransitiveClosure() {}
 		
-		void closureUtil(int s, int v) {
-			transclosure[s][v] = 1;
-			for(int t : this.adjList[v]) {
-				if(transclosure[s][t] == 0) closureUtil(s, t);				
-			}
-		}
+		void closureUtil(int s, int v) {}
 		
 	}
 	

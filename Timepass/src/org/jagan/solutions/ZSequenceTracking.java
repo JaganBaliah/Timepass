@@ -15,18 +15,11 @@ public class ZSequenceTracking {
 		System.out.print(isBackToStartingPoint("ULDRULDR") + "\n");
 	}
 	
-	private static void print(String sequence) {
+	public static void print(String sequence) {
 		System.out.print("Is Back to start in sequence : [" + Arrays.toString(sequence.toCharArray()) + "] is ");
 	}
 	
 	private static boolean isBackToStartingPoint(String sequence) {
-		print(sequence);
-		int xorVal = 0;
-		for(char ch : sequence.toCharArray()) {
-			if(ch == 'D') ch = 'U';
-			if(ch == 'R') ch = 'L';
-			xorVal ^= ch;
-		}
-		return xorVal == 0;
+		return false;
 	}
 }
