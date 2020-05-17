@@ -25,6 +25,7 @@ public class ZTreeNodeUtil {
 		traversePostOrder(node, bldr);
 		System.out.println("Post Order : " + bldr.toString());
 		
+		System.out.println(evaluate(node));
 	}
 	
 	public static void traverseLevelOrder(TreeNode root, StringBuilder bldr) {
@@ -46,7 +47,11 @@ public class ZTreeNodeUtil {
 	public static TreeNode populate(Scanner scanner) {
 		return null;
 	}
-	
+
+	public static int evaluate(TreeNode node) {
+		return 0;
+	}
+
 	static class TreeNode {
 		String data;
 		TreeNode left;
