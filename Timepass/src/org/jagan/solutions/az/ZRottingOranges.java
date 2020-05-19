@@ -1,10 +1,5 @@
 package org.jagan.solutions.az;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 public class ZRottingOranges {
 	
 	/*
@@ -74,94 +69,12 @@ public class ZRottingOranges {
 		System.out.println("Time taken in minutes : " + orangesRotting(grid));
 	}
 	
+	public static int orangesRotting0(int[][] grid) {
+		return 0;
+	}
+
 	public static int orangesRotting(int[][] grid) {
-		int rows = grid.length;
-		int cols = grid[0].length;
-		int minCount = 0;
-		int freshCount = 0;
-		List<Integer[]> rotten = new ArrayList<Integer[]>();
-		for(int i = 0; i < rows; i++) {
-			for(int j = 0; j < cols; j++) {
-				if(grid[i][j] == 2) {
-					rotten.add(new Integer[] {i, j});
-				}
-				else if(grid[i][j] == 1) {
-					freshCount++;				
-				}
-			}
-		}
-		if(freshCount == 0) return 0;
-		while(!rotten.isEmpty()) {
-			minCount++;
-			List<Integer[]> temp = new ArrayList<Integer[]>();
-			for(Integer[] xy : rotten) {
-				int x = xy[0], y = xy[1];
-				if(x - 1 >= 0 && grid[x - 1][y] == 1) {
-					grid[x - 1][y] = 2;
-					temp.add(new Integer[] {x - 1, y});
-					freshCount--;
-				}
-				if(x + 1 < rows && grid[x + 1][y] == 1) {
-					grid[x + 1][y] = 2;
-					temp.add(new Integer[] {x + 1, y});
-					freshCount--;
-				}
-				if(y - 1 >= 0 && grid[x][y - 1] == 1) {
-					grid[x][y - 1] = 2;
-					temp.add(new Integer[] {x, y - 1});
-					freshCount--;
-				}
-				if(y + 1 < cols && grid[x][y + 1] == 1) {
-					grid[x][y + 1] = 2;
-					temp.add(new Integer[] {x, y + 1});
-					freshCount--;
-				}
-			}
-			if(freshCount == 0) return minCount;
-			rotten = new ArrayList<>(temp);
-		}
-		return -1;
-	}
-
-	public static int orangesRotting1(int[][] grid) {
-		int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-		Queue<Point> queue = new LinkedList<>();
-		int rows = grid.length;
-		int cols = grid[0].length;
-		int freshCount = 0;
-		for(int i = 0; i < rows; i++) {
-			for(int j = 0; j < cols; j++) {
-				if(grid[i][j] == 2) {
-					queue.add(new Point(i, j));
-				} else if(grid[i][j] == 1) {
-					freshCount++;	
-				}
-			}
-		}
-		if(freshCount == 0) return 0;
-		for(int minCount = 1; !queue.isEmpty(); minCount++) {
-			int size = queue.size();
-			while(size-- > 0) {
-				Point p = queue.poll();
-				for(int[] dir : dirs) {
-					int adjX = p.x + dir[0];
-					int adjY = p.y + dir[1];
-					boolean isFresh = isFresh(grid, adjX, adjY);
-					if(isFresh) {
-						freshCount--;
-						grid[adjX][adjY] = 2;
-						queue.add(new Point(adjX, adjY));
-					}
-					if(freshCount == 0) return minCount;
-				}
-			}
-		}
-		return -1;
-	}
-
-	static boolean isFresh(int[][] grid, int x, int y) {
-		if(x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1) return true;
-		return false;
+		return 0;
 	}
 
 	static class Point {
