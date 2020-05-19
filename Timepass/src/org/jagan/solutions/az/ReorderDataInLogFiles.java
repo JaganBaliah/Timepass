@@ -48,8 +48,21 @@ public class ReorderDataInLogFiles {
 
 		logs = new String[]{"dig12 8 1 5 1","let11 art can","dig23 3 6","let2 own kit dig","let1 art can"};
 		System.out.println("Input : " + Arrays.toString(logs));
+		solution(logs);
+		System.out.println("Output : " + Arrays.deepToString(logs));
+		
+		System.out.println();
+		
+		logs = new String[]{"dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"};
+		System.out.println("Input : " + Arrays.toString(logs));
 		solution1(logs);
 		System.out.println("Output : " + Arrays.deepToString(logs));
+
+		logs = new String[]{"dig12 8 1 5 1","let11 art can","dig23 3 6","let2 own kit dig","let1 art can"};
+		System.out.println("Input : " + Arrays.toString(logs));
+		solution1(logs);
+		System.out.println("Output : " + Arrays.deepToString(logs));
+		
 	}
 
 	public static void solution(String[] logs) {
